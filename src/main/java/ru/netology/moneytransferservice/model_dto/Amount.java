@@ -1,4 +1,4 @@
-package ru.netology.moneytransferservice.model;
+package ru.netology.moneytransferservice.model_dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;

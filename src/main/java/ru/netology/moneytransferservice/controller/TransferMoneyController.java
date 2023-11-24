@@ -31,9 +31,4 @@ public class TransferMoneyController {
     public TransferMoneyController(TransferMoneyService transferMoneyService) {
         this.transferMoneyService = transferMoneyService;
     }
-
-
-
-
-
 }
