@@ -5,10 +5,3 @@ public class ErrorInputData extends Exception {
         super(message);
     }
 }
-
-
-//public class ErrorInputData extends Exception {
-//    public ErrorInputData(String message) {
-//        super(message);
-//    }
-//}

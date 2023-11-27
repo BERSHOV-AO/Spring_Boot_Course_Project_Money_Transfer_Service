@@ -32,6 +32,8 @@ public class TransferMoneyService {
 
     private final TransferMoneyRepository transferMoneyRepository;
 
+    private final String LOGGER_PATH = "src/main/java/ru/netology/moneytransferservice/logs/logs.txt";
+
     public TransferMoneyService(TransferMoneyRepository transferMoneyRepository) {
         this.transferMoneyRepository = transferMoneyRepository;
     }
@@ -39,7 +41,7 @@ public class TransferMoneyService {
     // передача
     public void transfer(TransferMoneyData transferMoneyData) {
         transferMoneyData.setId(String.valueOf(UUID.randomUUID()));
-        Logger logger = new Logger("src/main/java/ru/netology/moneytransferservice/logs/logs.txt");
+        Logger logger = new Logger(LOGGER_PATH);
         logger.log("Date | " + LocalDateTime.now().format(
                 DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")) + "\n"
                 + "Card From | " + transferMoneyData.getCardFromNumber() + "\n"
@@ -50,6 +52,8 @@ public class TransferMoneyService {
         transferMoneyRepository.saveTransferData(transferMoneyData);
     }
 
+
+    // подтверждение
     public OperationStatus confirm(ConfirmationData confirmationData) throws ErrorInputData {
         TransferMoneyData transferMoneyData = transferMoneyRepository.getTransfers().pop();
         String code = transferMoneyRepository.getOperations()
