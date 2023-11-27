@@ -7,7 +7,18 @@ Content-Type: application/json
   "cardFromCVV": "245",
   "cardToNumber": "5235890189478954",
   "amount": {
-    "value": 893433400,
+    "value": 223244200,
     "currency": "RUS"
   }
 }
+
+###
+POST http://localhost:5500/confirmOperation
+Content-Type: application/json
+
+{
+  "operationId": "1",
+  "code": "0000"
+}
+
+

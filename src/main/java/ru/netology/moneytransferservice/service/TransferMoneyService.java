@@ -42,14 +42,13 @@ public class TransferMoneyService {
     public void transfer(TransferMoneyData transferMoneyData) {
         transferMoneyData.setId(String.valueOf(UUID.randomUUID()));
         Logger logger = new Logger(LOGGER_PATH);
-        logger.log("Date | " + LocalDateTime.now().format(
+        logger.log("Date : " + LocalDateTime.now().format(
                 DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")) + "\n"
-                + "Card From | " + transferMoneyData.getCardFromNumber() + "\n"
-                + "Card To | " + transferMoneyData.getCardToNumber() + "\n"
-                + "Value | " + transferMoneyData.getAmount().getValue() / 100 + "\n"
-                + "Currency | " + transferMoneyData.getAmount().getCurrency() + "\n"
-                + "Commission | 1%" + "\n"
-                + "ID | " + transferMoneyData.getId() + "\n");
+                + "Card From : " + transferMoneyData.getCardFromNumber() + "\n"
+                + "Card To : " + transferMoneyData.getCardToNumber() + "\n"
+                + "Value : " + transferMoneyData.getAmount().getValue() / 100 + "\n"
+                + "Commission : 1%" + "\n"
+                + "ID : " + transferMoneyData.getId() + "\n");
         transferMoneyRepository.saveTransferData(transferMoneyData);
     }
 
