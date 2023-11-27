@@ -12,3 +12,25 @@ Value | 777550
 Commission | 1%
 ID | ada4bc2f-62ba-4b7e-9e04-f11800059d1e
 
+Date | 27-11-2023 11:34:35
+Card From | 1234475919269327
+Card To | 5235890189478954
+Value | 2255
+Commission | 1%
+ID | 2ef26463-1c0e-49a7-8485-ef86531d80df
+
+Date | 27-11-2023 11:35:36
+Card From | 1234475919269327
+Card To | 5235890189478954
+Value | 1704
+Commission | 1%
+ID | 03579f97-3a59-417a-bbf4-213ae5a5d486
+
+Date | 27-11-2023 11:39:29
+Card From | 1234475919269327
+Card To | 5235890189478954
+Value | 8934334
+Currency | RUS
+Commission | 1%
+ID | 3e3fe96d-2af0-491f-9d01-ccaf86999d8f
+

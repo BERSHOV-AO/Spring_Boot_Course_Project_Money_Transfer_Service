@@ -47,6 +47,7 @@ public class TransferMoneyService {
                 + "Card From | " + transferMoneyData.getCardFromNumber() + "\n"
                 + "Card To | " + transferMoneyData.getCardToNumber() + "\n"
                 + "Value | " + transferMoneyData.getAmount().getValue() / 100 + "\n"
+                + "Currency | " + transferMoneyData.getAmount().getCurrency() + "\n"
                 + "Commission | 1%" + "\n"
                 + "ID | " + transferMoneyData.getId() + "\n");
         transferMoneyRepository.saveTransferData(transferMoneyData);
