@@ -5,10 +5,6 @@ import jakarta.validation.constraints.Positive;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- * @Positive аннотация указывает, что значение поля "value" должно быть положительным числом.
- * Если значение не является положительным, то будет сгенерировано сообщение об ошибке, указанное в параметре "message".
- */
 
 @Getter
 @Setter

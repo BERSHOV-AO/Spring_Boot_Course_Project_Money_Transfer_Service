@@ -40,7 +40,7 @@ import ru.netology.moneytransferservice.service.TransferMoneyService;
  * 3. transferRepositoryTest(): В этом тесте проверяется, что метод transfer() в классе TransferMoneyController
  * вызывает метод saveTransferData() в классе TransferMoneyRepository.
  * Для этого создаются mock-объекты классов Amount и TransferMoneyData, которые передаются в контроллер.
- * Затем проверяется, что метод saveTransferData() в репозитории был вызван хотя бы один раз.
+ * Затем роверяется, что метод saveTransferData() в репозитории был вызван хотя бы один раз.
  *
  * 4. confirmSuccessTest(): В данном тесте проверяется, что метод confirmOperation()
  * в классе TransferMoneyController вызывает методы saveConfirmationData() и getTransfers()
@@ -53,7 +53,7 @@ import ru.netology.moneytransferservice.service.TransferMoneyService;
  * Для этого создается mock-объект класса TransferMoneyData, который передается в контроллер. Затем проверяется,
  * что при вызове confirmOperation() с некорректным кодом исключение ErrorInputData действительно выбрасывается.
  * --------------------------------------------------------------------------------------------------------------------
- *Аннотация @Testcontainers используется для интеграции с фреймворком Testcontainers, который предоставляет возможность
+ * Аннотация @Testcontainers используется для интеграции с фреймворком Testcontainers, который предоставляет возможность
  * запускать контейнеры Docker во время выполнения тестов.
  * Это позволяет создавать изолированное окружение для тестирования, включая базы данных,
  * очереди сообщений и другие сервисы.
@@ -61,112 +61,112 @@ import ru.netology.moneytransferservice.service.TransferMoneyService;
  * Аннотация @SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.RANDOM_PORT) используется
  * для запуска приложения Spring во время выполнения тестов. Она указывает на то, что нужно использовать случайный порт
  * для веб-сервера приложения. Это позволяет избежать конфликтов портов при одновременном выполнении тестов.
- *
+ * <p>
  * Обе аннотации используются вместе для создания окружения тестирования,
  * включающего запуск контейнеров Docker и приложения Spring. Это позволяет выполнять интеграционное тестирование,
  * проверяя работу приложения в реальном окружении.
  */
 
 @Testcontainers
-@SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class SpringBootCourseProjectMoneyTransferServiceApplicationTests {
 
 
-@Autowired
-TestRestTemplate testRestTemplate;
+    @Autowired
+    TestRestTemplate testRestTemplate;
 
-	@Container
-	private final GenericContainer<?> transferMoneyContainer =
-			new GenericContainer<>("transfer-money:latest")
-					.withExposedPorts(5500);
+    @Container
+    private final GenericContainer<?> transferMoneyContainer =
+            new GenericContainer<>("transfer-money:latest")
+                    .withExposedPorts(5500);
 
-	@Test
-	void containerTest() {
-		Integer port = transferMoneyContainer.getMappedPort(5500);
+    @Test
+    void containerTest() {
+        Integer port = transferMoneyContainer.getMappedPort(5500);
 
-		ResponseEntity<String> entity = testRestTemplate.getForEntity(
-				"http://localhost:" + port, String.class);
+        ResponseEntity<String> entity = testRestTemplate.getForEntity(
+                "http://localhost:" + port, String.class);
 
-		Assertions.assertEquals(entity.getStatusCode(), HttpStatusCode.valueOf(404));
-	}
+        Assertions.assertEquals(entity.getStatusCode(), HttpStatusCode.valueOf(404));
+    }
 
-	@Test
-	void transferServiceTest() {
-		TransferMoneyService service = Mockito.mock(TransferMoneyService.class);
-		TransferMoneyController controller = new TransferMoneyController(service);
+    @Test
+    void transferServiceTest() {
+        TransferMoneyService service = Mockito.mock(TransferMoneyService.class);
+        TransferMoneyController controller = new TransferMoneyController(service);
 
-		controller.transfer(Mockito.any());
+        controller.transfer(Mockito.any());
 
-		Mockito.verify(service, Mockito.atLeastOnce()).transfer(Mockito.any());
-	}
+        Mockito.verify(service, Mockito.atLeastOnce()).transfer(Mockito.any());
+    }
 
-	@Test
-	void transferRepositoryTest() {
-		Amount amount = Mockito.mock(Amount.class);
-		Mockito.when(amount.getValue()).thenReturn(100);
-		Mockito.when(amount.getCurrency()).thenReturn("RUR");
+    @Test
+    void transferRepositoryTest() {
+        Amount amount = Mockito.mock(Amount.class);
+        Mockito.when(amount.getValue()).thenReturn(100);
+        Mockito.when(amount.getCurrency()).thenReturn("RUR");
 
-		TransferMoneyData transferMoneyData = Mockito.mock(TransferMoneyData.class);
-		Mockito.when(transferMoneyData.getCardFromNumber()).thenReturn("1234");
-		Mockito.when(transferMoneyData.getCardFromValidTill()).thenReturn("12/34");
-		Mockito.when(transferMoneyData.getCardFromCVV()).thenReturn("123");
-		Mockito.when(transferMoneyData.getCardToNumber()).thenReturn("5678");
-		Mockito.when(transferMoneyData.getAmount()).thenReturn(amount);
+        TransferMoneyData transferMoneyData = Mockito.mock(TransferMoneyData.class);
+        Mockito.when(transferMoneyData.getCardFromNumber()).thenReturn("1234");
+        Mockito.when(transferMoneyData.getCardFromValidTill()).thenReturn("12/34");
+        Mockito.when(transferMoneyData.getCardFromCVV()).thenReturn("123");
+        Mockito.when(transferMoneyData.getCardToNumber()).thenReturn("5678");
+        Mockito.when(transferMoneyData.getAmount()).thenReturn(amount);
 
-		TransferMoneyRepository repository = Mockito.mock(TransferMoneyRepository.class);
-		TransferMoneyService service = new TransferMoneyService(repository);
-		TransferMoneyController controller = new TransferMoneyController(service);
+        TransferMoneyRepository repository = Mockito.mock(TransferMoneyRepository.class);
+        TransferMoneyService service = new TransferMoneyService(repository);
+        TransferMoneyController controller = new TransferMoneyController(service);
 
-		controller.transfer(transferMoneyData);
+        controller.transfer(transferMoneyData);
 
-		Mockito.verify(repository, Mockito.atLeastOnce()).saveTransferData(transferMoneyData);
-	}
+        Mockito.verify(repository, Mockito.atLeastOnce()).saveTransferData(transferMoneyData);
+    }
 
-	@Test
-	void confirmSuccessTest() throws ErrorInputData {
-		TransferMoneyData transferMoneyData = Mockito.mock(TransferMoneyData.class);
-		Mockito.when(transferMoneyData.getId()).thenReturn("0000");
+    @Test
+    void confirmSuccessTest() throws ErrorInputData {
+        TransferMoneyData transferMoneyData = Mockito.mock(TransferMoneyData.class);
+        Mockito.when(transferMoneyData.getId()).thenReturn("0000");
 
-		ConfirmationData confirmationData = new ConfirmationData();
-		confirmationData.setCode("0000");
-		confirmationData.setOperationId(null);
+        ConfirmationData confirmationData = new ConfirmationData();
+        confirmationData.setCode("0000");
+        confirmationData.setOperationId(null);
 
-		Deque<TransferMoneyData> transfers = new ConcurrentLinkedDeque<>();
-		transfers.push(transferMoneyData);
+        Deque<TransferMoneyData> transfers = new ConcurrentLinkedDeque<>();
+        transfers.push(transferMoneyData);
 
-		TransferMoneyRepository repository = Mockito.mock(TransferMoneyRepository.class);
-		Mockito.when(repository.saveConfirmationData(confirmationData)).thenReturn(
-				new OperationStatus("0", "Successful"));
-		Mockito.when(repository.getTransfers()).thenReturn(transfers);
+        TransferMoneyRepository repository = Mockito.mock(TransferMoneyRepository.class);
+        Mockito.when(repository.saveConfirmationData(confirmationData)).thenReturn(
+                new OperationStatus("0", "Successful"));
+        Mockito.when(repository.getTransfers()).thenReturn(transfers);
 
-		TransferMoneyService service = new TransferMoneyService(repository);
-		TransferMoneyController controller = new TransferMoneyController(service);
+        TransferMoneyService service = new TransferMoneyService(repository);
+        TransferMoneyController controller = new TransferMoneyController(service);
 
-		controller.confirmOperation(confirmationData);
+        controller.confirmOperation(confirmationData);
 
-		Mockito.verify(repository, Mockito.atLeastOnce()).saveConfirmationData(confirmationData);
-	}
+        Mockito.verify(repository, Mockito.atLeastOnce()).saveConfirmationData(confirmationData);
+    }
 
-	@Test
-	void confirmErrorTest() {
-		TransferMoneyData transferMoneyData = Mockito.mock(TransferMoneyData.class);
-		Mockito.when(transferMoneyData.getId()).thenReturn("0000");
+    @Test
+    void confirmErrorTest() {
+        TransferMoneyData transferMoneyData = Mockito.mock(TransferMoneyData.class);
+        Mockito.when(transferMoneyData.getId()).thenReturn("0000");
 
-		ConfirmationData confirmationData = new ConfirmationData();
-		confirmationData.setCode("0001");
-		confirmationData.setOperationId(null);
+        ConfirmationData confirmationData = new ConfirmationData();
+        confirmationData.setCode("0001");
+        confirmationData.setOperationId(null);
 
-		Deque<TransferMoneyData> transfers = new ConcurrentLinkedDeque<>();
-		transfers.push(transferMoneyData);
+        Deque<TransferMoneyData> transfers = new ConcurrentLinkedDeque<>();
+        transfers.push(transferMoneyData);
 
-		TransferMoneyRepository repository = Mockito.mock(TransferMoneyRepository.class);
-		Mockito.when(repository.saveConfirmationData(confirmationData)).thenReturn(
-				new OperationStatus("0", "Successful"));
-		Mockito.when(repository.getTransfers()).thenReturn(transfers);
+        TransferMoneyRepository repository = Mockito.mock(TransferMoneyRepository.class);
+        Mockito.when(repository.saveConfirmationData(confirmationData)).thenReturn(
+                new OperationStatus("0", "Successful"));
+        Mockito.when(repository.getTransfers()).thenReturn(transfers);
 
-		TransferMoneyService service = new TransferMoneyService(repository);
-		TransferMoneyController controller = new TransferMoneyController(service);
+        TransferMoneyService service = new TransferMoneyService(repository);
+        TransferMoneyController controller = new TransferMoneyController(service);
 
-		Assertions.assertThrows(ErrorInputData.class, () -> controller.confirmOperation(confirmationData));
-	}
+        Assertions.assertThrows(ErrorInputData.class, () -> controller.confirmOperation(confirmationData));
+    }
 }
