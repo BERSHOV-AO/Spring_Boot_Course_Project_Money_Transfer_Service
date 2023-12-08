@@ -1,4 +1,4 @@
-package ru.netology.moneytransferservice.model_dto;
+package ru.netology.moneytransferservice.model;
 
 
 import jakarta.validation.Valid;

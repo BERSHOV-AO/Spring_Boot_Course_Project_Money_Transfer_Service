@@ -7,7 +7,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import ru.netology.moneytransferservice.logger.Logger;
-import ru.netology.moneytransferservice.model_dto.OperationStatus;
+import ru.netology.moneytransferservice.model.OperationStatus;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

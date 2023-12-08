@@ -1,0 +1,42 @@
+Date : 08-12-2023 13:51:08
+Card From : 3333333333333333
+Card To : 3344344444444444
+Value : 3123555
+Commission : 1%
+ID : d8046c89-cc67-4657-bd90-c7ea7cb9f374
+
+Date : 08-12-2023 14:04:56
+Card From : 1232332434534654
+Card To : 6656452432466565
+Value : 23235
+Commission : 1%
+ID : dd03b7a0-0ac4-4e51-b70d-a0f41330e0a9
+
+Date : 08-12-2023 14:16:09
+Card From : 1234356465767878
+Card To : 5464356132456565
+Value : 124435
+Commission : 1%
+ID : 3a1432da-55b9-4fe7-b748-fd5bef6cd4ba
+
+Date : 08-12-2023 14:20:43
+Card From : 7776565657765654
+Card To : 5435676734354656
+Value : 32343
+Commission : 1%
+ID : 18fa1d86-ee9a-443c-8c7c-3e290faaf0e7
+
+Date : 08-12-2023 14:20:56
+Card From : 7776565657765654
+Card To : 5435676734354656
+Value : 3243434
+Commission : 1%
+ID : 734c7240-3035-4c85-9607-67136a02be09
+
+Date : 08-12-2023 14:34:02
+Card From : 2332132321321332
+Card To : 3232321321321321
+Value : 322323
+Commission : 1%
+ID : 8a817702-ee04-469a-85dc-167c421e290b
+
