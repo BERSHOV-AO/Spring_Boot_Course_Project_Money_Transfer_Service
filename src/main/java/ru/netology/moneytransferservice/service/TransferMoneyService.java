@@ -1,5 +1,7 @@
 package ru.netology.moneytransferservice.service;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import ru.netology.moneytransferservice.exception.ErrorInputData;
 import ru.netology.moneytransferservice.logger.Logger;
@@ -67,24 +69,25 @@ import java.util.UUID;
 //}
 
 
+@RequiredArgsConstructor
 @Service
-public class TransferMoneyService {
+public class TransferMoneyService implements TransferMoneyServiceInterface {
 
     private final String ZERO = "0000";
 
     private final TransferMoneyRepository transferMoneyRepository;
 
-    private final String LOGGER_PATH = "src/main/java/ru/netology/moneytransferservice/logs.txt";
+    @Value("${logger.path}")
+    private String loggerPath;
 
-    public TransferMoneyService(TransferMoneyRepository transferMoneyRepository) {
-        this.transferMoneyRepository = transferMoneyRepository;
-    }
 
     // передача
+    @Override
     public void transfer(TransferMoneyData transferMoneyData) {
 
         transferMoneyData.setId(String.valueOf(UUID.randomUUID()));
-        Logger logger = new Logger(LOGGER_PATH);
+        Logger logger = new Logger(loggerPath);
+
         logger.log("Date : " + LocalDateTime.now().format(
                 DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")) + "\n"
                 + "Card From : " + transferMoneyData.getCardFromNumber() + "\n"
@@ -97,13 +100,17 @@ public class TransferMoneyService {
 
 
     // подтверждение
+    @Override
     public OperationStatus confirm(ConfirmationData confirmationData) throws ErrorInputData {
         TransferMoneyData transferMoneyData = transferMoneyRepository.getTransfers().pop();
         String code = transferMoneyRepository.getOperations()
                 .getOrDefault(transferMoneyData.getId(), ZERO);
+        Logger logger = new Logger(loggerPath);
         if (confirmationData.code().equals(code)) {
+            logger.log("Подтверждение успешного перевода с ID: " + transferMoneyData.getId());
             return transferMoneyRepository.saveConfirmationData(confirmationData);
         } else {
+            logger.log("Неверный код подтверждения для перевода с ID: " + transferMoneyData.getId());
             throw new ErrorInputData("Wrong verification code!");
         }
     }

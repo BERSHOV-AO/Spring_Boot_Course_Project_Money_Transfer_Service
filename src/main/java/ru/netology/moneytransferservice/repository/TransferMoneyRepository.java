@@ -15,33 +15,9 @@ import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 
-//@Getter
-//@Repository
-//public class TransferMoneyRepository {
-//
-//    // Map операции
-//    private final Map<String, String> operations = new ConcurrentHashMap<>();
-//    // переводы
-//    private final Deque<TransferMoneyData> transfers = new ConcurrentLinkedDeque<>();
-//    // подтверждения
-//    private final List<ConfirmationData> confirmations = new CopyOnWriteArrayList<>();
-//
-//    // сохранить данные передачи
-//    public void saveTransferData(TransferMoneyData transferMoneyData) {
-//        operations.put(transferMoneyData.getId(), "0000");
-//        transfers.push(transferMoneyData);
-//    }
-//
-//    // сохранить данные подтверждения
-//    public OperationStatus saveConfirmationData(ConfirmationData confirmationData) {
-//        confirmations.add(confirmationData);
-//        return new OperationStatus(String.valueOf(UUID.randomUUID()), "Operation Confirmed!");
-//    }
-//}
-
 @Getter
 @Repository
-public class TransferMoneyRepository {
+public class TransferMoneyRepository implements TransferMoneyRepositoryInterface {
 
     private final String ZERO = "0000";
 
@@ -53,12 +29,14 @@ public class TransferMoneyRepository {
     private final List<ConfirmationData> confirmations = new CopyOnWriteArrayList<>();
 
     // сохранить данные передачи
+    @Override
     public void saveTransferData(TransferMoneyData transferMoneyData) {
         operations.put(transferMoneyData.getId(), ZERO);
         transfers.push(transferMoneyData);
     }
 
     // сохранить данные подтверждения
+    @Override
     public OperationStatus saveConfirmationData(ConfirmationData confirmationData) {
         confirmations.add(confirmationData);
         return new OperationStatus(String.valueOf(UUID.randomUUID()), "Operation Confirmed!");

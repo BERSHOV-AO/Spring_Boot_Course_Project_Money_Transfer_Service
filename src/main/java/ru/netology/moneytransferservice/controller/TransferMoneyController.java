@@ -17,15 +17,17 @@ import ru.netology.moneytransferservice.service.TransferMoneyService;
 @RequiredArgsConstructor
 @CrossOrigin(origins = "https://serp-ya.github.io/")
 @RestController
-public class TransferMoneyController {
+public class TransferMoneyController implements TransferMoneyControllerInterface {
 
     private final TransferMoneyService transferMoneyService;
 
+    @Override
     @PostMapping("/transfer")
     public void transfer(@Validated @RequestBody TransferMoneyData transferMoneyData) {
         transferMoneyService.transfer(transferMoneyData);
     }
 
+    @Override
     @PostMapping("/confirmOperation")
     public OperationStatus confirmOperation(@RequestBody ConfirmationData confirmationData) throws ErrorInputData {
         return transferMoneyService.confirm(confirmationData);
