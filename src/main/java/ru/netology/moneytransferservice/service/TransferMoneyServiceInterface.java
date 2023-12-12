@@ -6,6 +6,7 @@ import ru.netology.moneytransferservice.model.OperationStatus;
 import ru.netology.moneytransferservice.model.TransferMoneyData;
 
 public interface TransferMoneyServiceInterface {
-    public void transfer(TransferMoneyData transferMoneyData);
+    public OperationStatus transfer(TransferMoneyData transferMoneyData);
+
     public OperationStatus confirm(ConfirmationData confirmationData) throws ErrorInputData;
 }

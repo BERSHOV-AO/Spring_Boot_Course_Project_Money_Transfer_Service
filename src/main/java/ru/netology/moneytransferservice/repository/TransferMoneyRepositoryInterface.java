@@ -9,9 +9,13 @@ import java.util.List;
 import java.util.Map;
 
 public interface TransferMoneyRepositoryInterface {
-    void saveTransferData(TransferMoneyData transferMoneyData);
+    OperationStatus saveTransferData(TransferMoneyData transferMoneyData);
+
     OperationStatus saveConfirmationData(ConfirmationData confirmationData);
+
     Map<String, String> getOperations();
+
     Deque<TransferMoneyData> getTransfers();
+
     List<ConfirmationData> getConfirmations();
 }

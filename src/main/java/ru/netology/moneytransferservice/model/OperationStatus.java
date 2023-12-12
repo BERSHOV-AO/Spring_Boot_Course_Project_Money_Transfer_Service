@@ -10,4 +10,3 @@ public record OperationStatus(String id, String description) {
                 '}';
     }
 }
-

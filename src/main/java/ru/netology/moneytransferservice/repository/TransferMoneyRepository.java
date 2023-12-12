@@ -30,9 +30,10 @@ public class TransferMoneyRepository implements TransferMoneyRepositoryInterface
 
     // сохранить данные передачи
     @Override
-    public void saveTransferData(TransferMoneyData transferMoneyData) {
+    public OperationStatus saveTransferData(TransferMoneyData transferMoneyData) {
         operations.put(transferMoneyData.getId(), ZERO);
         transfers.push(transferMoneyData);
+        return new OperationStatus(transferMoneyData.getId(), "Operation Transfer!");
     }
 
     // сохранить данные подтверждения
