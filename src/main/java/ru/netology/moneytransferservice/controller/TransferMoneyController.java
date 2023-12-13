@@ -10,7 +10,6 @@ import ru.netology.moneytransferservice.exception.ErrorInputData;
 import ru.netology.moneytransferservice.model.ConfirmationData;
 import ru.netology.moneytransferservice.model.OperationStatus;
 import ru.netology.moneytransferservice.model.TransferMoneyData;
-import ru.netology.moneytransferservice.service.TransferMoneyService;
 import ru.netology.moneytransferservice.service.TransferMoneyServiceInterface;
 
 @RequiredArgsConstructor
@@ -22,7 +21,7 @@ public class TransferMoneyController implements TransferMoneyControllerInterface
 
     @Override
     @PostMapping("/transfer")
-    public OperationStatus transfer(@Validated @RequestBody TransferMoneyData transferMoneyData) {
+    public OperationStatus transfer(@Validated @RequestBody TransferMoneyData transferMoneyData) throws ErrorInputData {
         return transferMoneyService.transfer(transferMoneyData);
     }
 

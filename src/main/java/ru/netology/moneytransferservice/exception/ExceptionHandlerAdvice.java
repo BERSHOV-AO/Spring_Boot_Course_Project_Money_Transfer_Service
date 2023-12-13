@@ -13,11 +13,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
-
 @RestControllerAdvice
 public class ExceptionHandlerAdvice {
 
-    private final String LOGGER_PATH = "src/main/java/ru/netology/moneytransferservice/logs.txt";
+    private final String LOGGER_PATH = "logs/prgLogs.txt.";
     private final Logger logger = new Logger(LOGGER_PATH);
 
     @ExceptionHandler

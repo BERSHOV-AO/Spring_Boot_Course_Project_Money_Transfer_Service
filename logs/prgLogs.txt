@@ -1,0 +1,45 @@
+Date : 12-12-2023 14:26:45
+Card From : 1111111111111111
+Card To : 1222222222222222
+Value : 32323
+Commission : 1%
+ID : d3612e46-b254-495e-b5b1-b87ce6ca1ea8
+
+Подтверждение успешного перевода с ID: d3612e46-b254-495e-b5b1-b87ce6ca1ea8
+Date : 13-12-2023 13:48:52
+Card From : 3333333333333333
+Card To : 2222222222222222
+Value : 22222
+Commission : 1%
+ID : a0cca32e-f236-471e-b3a0-c10de64013b0
+
+Подтверждение успешного перевода с ID: a0cca32e-f236-471e-b3a0-c10de64013b0
+Date : 13-12-2023 13:50:17
+Card From : 2323454565767576
+Card To : 6757676754435434
+Value : 32243
+Commission : 1%
+ID : 3453cfef-5f3b-484c-b92b-5b6668fbcf3e
+
+Date : 13-12-2023 13:50:19
+Card From : 2323454565767576
+Card To : 6757676754435434
+Value : 32243
+Commission : 1%
+ID : a15f734f-f071-40db-b95b-69d2f46897cd
+
+Date : 13-12-2023 13:50:42
+Card From : 2323454565767576
+Card To : 6757676754435434
+Value : 32243
+Commission : 1%
+ID : 3d42899d-6270-4e6e-9f44-aa70c2738f53
+
+Date : 13-12-2023 13:53:22
+Card From : 2323454565767576
+Card To : 6757676754435434
+Value : 32243
+Commission : 1%
+ID : 79ec921e-9dcb-4e9b-85e1-93bac60aca88
+
+Подтверждение успешного перевода с ID: 79ec921e-9dcb-4e9b-85e1-93bac60aca88

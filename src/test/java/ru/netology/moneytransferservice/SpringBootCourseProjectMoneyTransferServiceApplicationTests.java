@@ -16,6 +16,7 @@ import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import ru.netology.moneytransferservice.controller.TransferMoneyController;
+import ru.netology.moneytransferservice.controller.TransferMoneyControllerInterface;
 import ru.netology.moneytransferservice.exception.ErrorInputData;
 import ru.netology.moneytransferservice.model.Amount;
 import ru.netology.moneytransferservice.model.ConfirmationData;
@@ -90,9 +91,9 @@ class SpringBootCourseProjectMoneyTransferServiceApplicationTests {
     }
 
     @Test
-    void transferServiceTest() {
+    void transferServiceTest() throws ErrorInputData {
         TransferMoneyService service = Mockito.mock(TransferMoneyService.class);
-        TransferMoneyController controller = new TransferMoneyController(service);
+        TransferMoneyControllerInterface controller = new TransferMoneyController(service);
 
         controller.transfer(Mockito.any());
 
@@ -100,7 +101,7 @@ class SpringBootCourseProjectMoneyTransferServiceApplicationTests {
     }
 
     @Test
-    void transferRepositoryTest() {
+    void transferRepositoryTest() throws ErrorInputData {
         Amount amount = Mockito.mock(Amount.class);
         Mockito.when(amount.value()).thenReturn(100);
         Mockito.when(amount.currency()).thenReturn("RUR");
